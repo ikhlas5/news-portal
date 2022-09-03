@@ -1,5 +1,5 @@
 
-const loadAllData = (categoriesSpinner, dataLimit) =>{
+const loadAllData = () =>{
   const url = `https://openapi.programming-hero.com/api/news/categories`;
   try{
     fetch(url)
@@ -76,7 +76,7 @@ const displayNews = (cardNews)=>{
         cardDiv.innerHTML=`
         <div  class="card mb-3 border border-0 shadow rounded " style="max-width: 1200px;">
         <div  class="row g-0">
-          <div class="col-md-4">
+          <div class="col-md-4 ">
             <img src="${card.thumbnail_url}" class=" img-fluid rounded-start" alt="...">
           </div>
           <div class="col-md-8">
@@ -119,7 +119,7 @@ const displayNews = (cardNews)=>{
 const processSearch = (dataLimit) =>{
   toggleSpinner(true);
   const categoriesSpinner= document.getElementById('all-menu');
-  loadPhones(categoriesSpinner, dataLimit);
+  // loadAllData( dataLimit);
 }
 
 // spiner
@@ -147,21 +147,22 @@ const loadDataDatails = (newsDatils) =>{
 }
 
 const displayNewsDetails = (details)=>{
-  // console.log(details);
+  console.log(details);
   const modalTitle = document.getElementById('staticBackdropLabel');
   modalTitle.innerText=details.title;
-  const newsDetails = document.getElementById('news-container');
+  const newsDetails = document.getElementById('modal-container');
   // newsDetails.textContent='';
-  // console.log(details._id)
+  console.log(details._id)
   newsDetails.innerHTML=`
  
-  <img src="${details.thumbnail_url}" class ="news-writer img-fluid rounded-start" >
-  <p class="fw-bold ms-3">${details.author.name ? details. author.name : 'no found'} </p>
+  <img src="${details.image_url}" class ="news-writer img-fluid rounded-start" >
+  <p class="card-text ">${details.details ? details.details : 'No details' }</p>
+  <div class="d-flex   align-items-center author-img">
+  <img src="${details.author.img}" class ="news-writer img-fluid rounded-pill" style="max-width: 5%;" >
+  <p class="fw-bold ms-3">${details.author.name ? details. author.name : 'no found name'} </p>
+  </div>
   <p class="fw-bold ">Badge:${details.rating.badge}, <br><br> Number : ${details.rating.number}</p>
-  <p class="fw-bold ">View:${details.total_view ? details.total_view : 'no view'}</p>
-
-  `;
-  
+  `;  
 
 }
 
