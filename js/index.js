@@ -1,22 +1,31 @@
 
 const loadAllData = (categoriesSpinner, dataLimit) =>{
-    const url = `https://openapi.programming-hero.com/api/news/categories`;
+  const url = `https://openapi.programming-hero.com/api/news/categories`;
+  try{
     fetch(url)
     .then(res => res.json())
     .then(data =>setMenu(data.data.news_category));
+  }
+  catch (erorr){
+    alert('Something is Wrong')
+   }
+    
 };
 loadAllData();
 
 const setMenu =(categories)=>{
-    // console.log(categories);
+    // console.log(categories)
+
     const allMenu = document.getElementById('all-menu');
     
+    // const foundNews = document.getElementById('arry-length');
     categories.forEach(category => {
-        const menuDiv = document.createElement('ul');
+
+       const menuDiv = document.createElement('ul');
         menuDiv.classList.add('menu');
         menuDiv.innerHTML=`
        
-        <li ><a onclick="loadCardData('${category.category_id}'),processSearch() "  class="dropdown-item fw-semibold" href="#">${category.category_name}</a></li>
+        <li  ><a onclick="loadCardData('${category.category_id}'),processSearch() "  class="dropdown-item fw-semibold" href="#">${category.category_name}</a></li>
 
         `;
         allMenu.appendChild(menuDiv);
@@ -26,15 +35,28 @@ const setMenu =(categories)=>{
 };
 
 const loadCardData = (categoryId) =>{
-    const url = `https://openapi.programming-hero.com/api/news/category/${categoryId}`;
+  const url = `https://openapi.programming-hero.com/api/news/category/${categoryId}`;
+  try{
     console.log(url);
     fetch(url)
     .then(res=>res.json())
     .then(data=>displayNews(data.data));
+  }
+  catch (erorr){
+    alert('Something is Wrong')
+   }
   
 }
 
 const displayNews = (cardNews)=>{
+  const allMenu = document.getElementById('arry-length');
+    if(cardNews.length > 0){
+      allMenu.innerText=cardNews.length;
+    }
+    else{
+      allMenu.innerText = "No";
+    }
+
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = '';
  // display no phones found
@@ -48,9 +70,11 @@ const displayNews = (cardNews)=>{
 
     cardNews.forEach(card=>{
         const cardDiv = document.createElement('div');
-        // cardDiv.classList.add('');
+        cardDiv.classList.add('card-size');
+        cardDiv.classList.add('icons');
+        cardDiv.classList.add('arrow');
         cardDiv.innerHTML=`
-        <div  class="card mb-3 border border-0 shadow rounded" style="max-width: 1200px;">
+        <div  class="card mb-3 border border-0 shadow rounded " style="max-width: 1200px;">
         <div  class="row g-0">
           <div class="col-md-4">
             <img src="${card.thumbnail_url}" class=" img-fluid rounded-start" alt="...">
@@ -59,20 +83,20 @@ const displayNews = (cardNews)=>{
             <div class="card-body pe-5">
               <h5 class="card-title">${card.title}</h5>
                <p class="card-text ">${card.details.length > 400 ? card.details.slice(0,400) + '...' : card.details }</p>
-               <div class="d-flex justify-content-center  align-items-center">
+               <div class="d-flex justify-content-center  align-items-center author-img">
                
-               <img src="${card.author.img}" class=" me-3 rounded-pill" style="max-width: 5%;" alt="...">
+               <img src="${card.author.img}" class=" me-3 rounded-pill " style="max-width: 5%;" alt="...">
                <h6>${card.author.name ? card.author.name : 'No Name Hare'}</h6>
               
-               <h6 class="ms-5  "><i class="fa-solid fa-eye me-5">${card.total_view ? card.total_view:'No View'}</i></h6>
-               <div class="d-flex align-items-center ms-5">
+               <h6 class="ms-5 views "><i class="fa-solid fa-eye me-5">${card.total_view ? card.total_view:'No View'}</i></h6>
+               <div class="d-flex align-items-center ms-5 icons">
                 <p><i class="fa-solid fa-star ms-3"></i></p>
                 <p><i class="fa-solid fa-star ms-3"></i></p>
                 <p><i class="fa-solid fa-star ms-3"></i></p>
                 <p><i class="fa-solid fa-star-half-stroke ms-3"></i></p>
                 <p><i class="fa-solid fa-star-half-stroke ms-3"></i></p>
               </div>
-              <div class="d-flex align-items-center ms-5">
+              <div class="d-flex align-items-center ms-5 arrow">
               <i onclick="loadDataDatails('${card._id}')" class="fa-solid fa-arrow-right ms-5 fs-3 " data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
               </div>
                </div>
@@ -111,9 +135,15 @@ const toggleSpinner = isLoading => {
 
 const loadDataDatails = (newsDatils) =>{
   const url = `https://openapi.programming-hero.com/api/news/${newsDatils}`;
-  fetch(url)
-  .then(res=>res.json())
-  .then(data=>displayNewsDetails(data.data[0]))
+  try{
+    fetch(url)
+    .then(res=>res.json())
+    .then(data=>displayNewsDetails(data.data[0]))
+  }
+  catch (erorr){
+   alert('Something is Wrong')
+  }
+
 }
 
 const displayNewsDetails = (details)=>{

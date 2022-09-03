@@ -1,0 +1,38 @@
+.menu{
+    list-style:  none;
+
+ }
+
+ @media screen and (max-width:600px) {
+    .navs{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .card-size{
+        max-width: 540px;
+    }
+    .icons{
+        margin-left: 2px;
+    }
+    .arrow  {
+        margin-left: 5px;
+    }
+    .views{
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+    .author-img{
+        margin-right: 0px;
+    }
+ }
+
+ @media screen and (max-width: 768px){
+    .navs{ 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+ }

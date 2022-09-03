@@ -5,19 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Daily News</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://kit.fontawesome.com/d6abf5439b.js" crossorigin="anonymous"></script>
-    <style>
-        .menu{
-           list-style:  none;
-
-        }
-    </style>
   </head>
   <body>
     <header class="container">
       <h1 class="text-center m-3">Wlecome to <span class="text-warning  fs-1"> Our Daily News!</span></h1>
 <!-- navbar -->
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg bg-light ">
     <div class="container-fluid">
       <a class="navbar-brand bg-primary fw-semibold text-white p-2 mb-2 rounded-3" href="#">The Daily</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,9 +43,19 @@
     </header>
     <main class="container">
         <section>
-           <div id="all-menu" class="menu d-flex " >
+           <div id="all-menu" class="menu  d-flex navs " >
             <li><a class="dropdown-item fw-semibold menu" href="#">Home</a></li>
-           </div> 
+
+           </div>
+        </section>
+           <section>
+             <div  class="py-2 px-5 my-3 rounded text-bg-light" >
+              <h3><span id ="arry-length" class="px-3" ></span>Items found</h3>
+             </div>
+
+           </section>
+           <!-- No Data -->
+           <section>
            <div id="no-found-message" class="mt-4 d-none">
             <h3 class="text-warning">No News Found.</h3>
         </div>
@@ -65,8 +70,10 @@
         </section>
         <!-- lodder end -->
 <!-- news card -->
-        <section id="news-container">
-           
+        <section class="mt-3" >
+           <div id="news-container" class="row row-cols-1 row-cols-xl-1 g-4">
+
+           </div>
         </section>
         <!-- news end -->
 
