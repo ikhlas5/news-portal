@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Daily News</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/d6abf5439b.js" crossorigin="anonymous"></script>
+    <style>
+        .menu{
+           list-style:  none;
+
+        }
+    </style>
+  </head>
+  <body>
+    <header class="container">
+      <h1 class="text-center m-3">Wlecome to <span class="text-warning  fs-1"> Our Daily News!</span></h1>
+<!-- navbar -->
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand bg-primary fw-semibold text-white p-2 mb-2 rounded-3" href="#">The Daily</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link active fw-semibold text-primary fs-4" aria-current="page" href="#">News</a>
+          </li>
+        
+        </ul>
+        <ul class="navbar-nav  my-2 my-lg-0 navbar-nav-scroll " style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link active fw-semibold text-primary fs-4" aria-current="page" href="#">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active  fs-4" aria-current="page" href="#">Blog</a>
+          </li>
+        
+        </ul>
+       
+      </div>
+    </div>
+  </nav>
+  <!-- nav end -->
+  <hr>
+    </header>
+    <main class="container">
+        <section>
+           <div id="all-menu" class="menu d-flex " >
+            <li><a class="dropdown-item fw-semibold menu" href="#">Home</a></li>
+           </div> 
+        </section>
+
+        <section id="news-container">
+           
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>
