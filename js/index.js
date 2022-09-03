@@ -62,7 +62,7 @@ const displayNews = (cardNews)=>{
                 <p><i class="fa-solid fa-star-half-stroke ms-3"></i></p>
               </div>
               <div class="d-flex align-items-center ms-5">
-              <i onclick="loadDataDatails('')" class="fa-solid fa-arrow-right ms-5 fs-3 "></i>
+              <i onclick="loadDataDatails('${card._id}')" class="fa-solid fa-arrow-right ms-5 fs-3 " data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
               </div>
                </div>
                <p class="card-text ms-5"><small class="text-muted">${card.author.published_date}</small></p>
@@ -82,9 +82,17 @@ const loadDataDatails = (newsDatils) =>{
   const url = `https://openapi.programming-hero.com/api/news/${newsDatils}`;
   fetch(url)
   .then(res=>res.json())
-  .then(data=>displayNewsDetails(data))
+  .then(data=>displayNewsDetails(data.data[0]))
 }
 
 const displayNewsDetails = (details)=>{
-  console.log(details)
+  console.log(details);
+  const modalTitle = document.getElementById('exampleModalLabel');
+  modalTitle.innerText=details.title;
+  const newsDetails = document.getElementById('news-container');
+  newsDetails.innerHTML=`
+  <img src="${details.thumbnail_url}" class=" img-fluid rounded-start" alt="...">
+  `;
+
+
 }
