@@ -1,5 +1,5 @@
 
-const loadAllData = () =>{
+const loadAllData = (searchField, dataLimit) =>{
     const url = `https://openapi.programming-hero.com/api/news/categories`;
     fetch(url)
     .then(res => res.json())
@@ -15,12 +15,13 @@ const setMenu =(categories)=>{
         menuDiv.classList.add('menu');
         menuDiv.innerHTML=`
        
-        <li ><a onclick="loadCardData('${category.category_id}')" class="dropdown-item fw-semibold" href="#">${category.category_name}</a></li>
-        
-        
+        <li ><a onclick="loadCardData('${category.category_id}'),processSearch() "  class="dropdown-item fw-semibold" href="#">${category.category_name}</a></li>
+
         `;
         allMenu.appendChild(menuDiv);
+        
     });
+  
 };
 
 const loadCardData = (categoryId) =>{
@@ -35,6 +36,15 @@ const loadCardData = (categoryId) =>{
 const displayNews = (cardNews)=>{
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = '';
+ // display no phones found
+ const noPhone = document.getElementById('no-found-message');
+ if(cardNews.length === 0){
+     noPhone.classList.remove('d-none');
+ }
+ else{
+     noPhone.classList.add('d-none');
+ }
+
     cardNews.forEach(card=>{
         const cardDiv = document.createElement('div');
         // cardDiv.classList.add('');
@@ -76,7 +86,25 @@ const displayNews = (cardNews)=>{
         `;
         newsContainer.appendChild(cardDiv);
     });
+       // stop spinner or loader
+       toggleSpinner(false);
 };
+
+const processSearch = (dataLimit) =>{
+  toggleSpinner(true);
+  const searchField = document.getElementById('all-menu');
+  loadPhones(searchField, dataLimit);
+}
+
+const toggleSpinner = isLoading => {
+  const loaderSection = document.getElementById('loader');
+  if(isLoading){
+      loaderSection.classList.remove('d-none')
+  }
+  else{
+      loaderSection.classList.add('d-none');
+  }
+}
 
 const loadDataDatails = (newsDatils) =>{
   const url = `https://openapi.programming-hero.com/api/news/${newsDatils}`;
@@ -90,7 +118,7 @@ const displayNewsDetails = (details)=>{
   const modalTitle = document.getElementById('exampleModalLabel');
   modalTitle.innerText=details.title;
   const newsDetails = document.getElementById('news-container');
-  // newsDetails.textContent='';
+  newsDetails.textContent='';
   newsDetails.innerHTML=`
   <div class ="d-flex mt-3 mb-3 align-items-center">
   <img src="${details.thumbnail_url}" class ="news-writer img-fluid rounded-start" >
