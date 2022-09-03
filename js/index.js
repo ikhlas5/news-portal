@@ -10,6 +10,7 @@ loadAllData();
 const setMenu =(categories)=>{
     // console.log(categories);
     const allMenu = document.getElementById('all-menu');
+    
     categories.forEach(category => {
         const menuDiv = document.createElement('ul');
         menuDiv.classList.add('menu');
