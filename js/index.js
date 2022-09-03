@@ -1,3 +1,4 @@
+
 const loadAllData = () =>{
     const url = `https://openapi.programming-hero.com/api/news/categories`;
     fetch(url)
@@ -61,7 +62,7 @@ const displayNews = (cardNews)=>{
                 <p><i class="fa-solid fa-star-half-stroke ms-3"></i></p>
               </div>
               <div class="d-flex align-items-center ms-5">
-              <i onclick="loadDataDatails('${i}')" class="fa-solid fa-arrow-right ms-5 fs-3 "></i>
+              <i onclick="loadDataDatails('')" class="fa-solid fa-arrow-right ms-5 fs-3 "></i>
               </div>
                </div>
                <p class="card-text ms-5"><small class="text-muted">${card.author.published_date}</small></p>
@@ -78,8 +79,12 @@ const displayNews = (cardNews)=>{
 };
 
 const loadDataDatails = (newsDatils) =>{
-  const url = `https://openapi.programming-hero.com/api/news/{news_id}`;
+  const url = `https://openapi.programming-hero.com/api/news/${newsDatils}`;
   fetch(url)
   .then(res=>res.json())
-  .then(data=>console.log(data))
+  .then(data=>displayNewsDetails(data))
+}
+
+const displayNewsDetails = (details)=>{
+  console.log(details)
 }
