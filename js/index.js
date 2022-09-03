@@ -90,9 +90,15 @@ const displayNewsDetails = (details)=>{
   const modalTitle = document.getElementById('exampleModalLabel');
   modalTitle.innerText=details.title;
   const newsDetails = document.getElementById('news-container');
+  // newsDetails.textContent='';
   newsDetails.innerHTML=`
-  <img src="${details.thumbnail_url}" class=" img-fluid rounded-start" alt="...">
+  <div class ="d-flex mt-3 mb-3 align-items-center">
+  <img src="${details.thumbnail_url}" class ="news-writer img-fluid rounded-start" >
+  <p class="fw-bold ms-3">${details.author.name ? details. author.name : 'no found'} 
+  </div>
+  <p class="fw-bold ">Badge:${details.rating.badge}, <br><br> Number : ${details.rating.number}</p>
+  <p class="fw-bold ">View:${details.total_view ? details.total_view : 'no view'}</p>
   `;
-
+  
 
 }
