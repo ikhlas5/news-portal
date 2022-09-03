@@ -90,12 +90,14 @@ const displayNews = (cardNews)=>{
        toggleSpinner(false);
 };
 
+// start spiner
 const processSearch = (dataLimit) =>{
   toggleSpinner(true);
   const searchField = document.getElementById('all-menu');
   loadPhones(searchField, dataLimit);
 }
 
+// spiner
 const toggleSpinner = isLoading => {
   const loaderSection = document.getElementById('loader');
   if(isLoading){
