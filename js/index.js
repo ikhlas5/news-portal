@@ -1,5 +1,5 @@
 
-const loadAllData = (searchField, dataLimit) =>{
+const loadAllData = (categoriesSpinner, dataLimit) =>{
     const url = `https://openapi.programming-hero.com/api/news/categories`;
     fetch(url)
     .then(res => res.json())
@@ -8,7 +8,7 @@ const loadAllData = (searchField, dataLimit) =>{
 loadAllData();
 
 const setMenu =(categories)=>{
-    console.log(categories);
+    // console.log(categories);
     const allMenu = document.getElementById('all-menu');
     categories.forEach(category => {
         const menuDiv = document.createElement('ul');
@@ -37,12 +37,12 @@ const displayNews = (cardNews)=>{
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = '';
  // display no phones found
- const noPhone = document.getElementById('no-found-message');
+ const noNews = document.getElementById('no-found-message');
  if(cardNews.length === 0){
-     noPhone.classList.remove('d-none');
+     noNews.classList.remove('d-none');
  }
  else{
-     noPhone.classList.add('d-none');
+     noNews.classList.add('d-none');
  }
 
     cardNews.forEach(card=>{
@@ -72,7 +72,7 @@ const displayNews = (cardNews)=>{
                 <p><i class="fa-solid fa-star-half-stroke ms-3"></i></p>
               </div>
               <div class="d-flex align-items-center ms-5">
-              <i onclick="loadDataDatails('${card._id}')" class="fa-solid fa-arrow-right ms-5 fs-3 " data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+              <i onclick="loadDataDatails('${card._id}')" class="fa-solid fa-arrow-right ms-5 fs-3 " data-bs-toggle="modal" data-bs-target="#staticBackdrop"></i>
               </div>
                </div>
                <p class="card-text ms-5"><small class="text-muted">${card.author.published_date}</small></p>
@@ -93,8 +93,8 @@ const displayNews = (cardNews)=>{
 // start spiner
 const processSearch = (dataLimit) =>{
   toggleSpinner(true);
-  const searchField = document.getElementById('all-menu');
-  loadPhones(searchField, dataLimit);
+  const categoriesSpinner= document.getElementById('all-menu');
+  loadPhones(categoriesSpinner, dataLimit);
 }
 
 // spiner
@@ -116,18 +116,19 @@ const loadDataDatails = (newsDatils) =>{
 }
 
 const displayNewsDetails = (details)=>{
-  console.log(details);
-  const modalTitle = document.getElementById('exampleModalLabel');
+  // console.log(details);
+  const modalTitle = document.getElementById('staticBackdropLabel');
   modalTitle.innerText=details.title;
   const newsDetails = document.getElementById('news-container');
-  newsDetails.textContent='';
+  // newsDetails.textContent='';
+  // console.log(details._id)
   newsDetails.innerHTML=`
-  <div class ="d-flex mt-3 mb-3 align-items-center">
+ 
   <img src="${details.thumbnail_url}" class ="news-writer img-fluid rounded-start" >
-  <p class="fw-bold ms-3">${details.author.name ? details. author.name : 'no found'} 
-  </div>
+  <p class="fw-bold ms-3">${details.author.name ? details. author.name : 'no found'} </p>
   <p class="fw-bold ">Badge:${details.rating.badge}, <br><br> Number : ${details.rating.number}</p>
   <p class="fw-bold ">View:${details.total_view ? details.total_view : 'no view'}</p>
+
   `;
   
 
